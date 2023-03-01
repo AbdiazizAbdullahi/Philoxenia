@@ -26,16 +26,15 @@ class MainController < AppController
       end
       
 
-    post '/login' do
-        request.body.rewind
-        request_payload = JSON.parse(request.body.read)
+      post '/login' do
+        phone = params[:phone]
+        password = params[:password]
       
-        user = User.authenticate(request_payload['password'], request_payload['phone'])
+        user = User.find_by(phone: phone, password: password)
         if user
-          user.to_json 
+          { success: true, user: user }.to_json
         else
-          status 401
-          body 'Invalid credentials'
+          { success: false, error: 'Invalid credentials' }.to_json
         end
       end
 
