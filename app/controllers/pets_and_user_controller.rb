@@ -1,4 +1,4 @@
-class MainController < AppController
+class ApplicationController < AppController
     # class User < ActiveRecord::Base
     #   has_many :pets
     # end 
@@ -6,6 +6,8 @@ class MainController < AppController
     # class Pet < ActiveRecord::Base
     #   belongs_to :user
     # end
+
+    set :default_content_type, 'application/json'
 
     # User routes
     
@@ -30,7 +32,7 @@ class MainController < AppController
       
         user = User.authenticate(request_payload['password'], request_payload['phone'])
         if user
-          user.to_json
+          user.to_json 
         else
           status 401
           body 'Invalid credentials'
@@ -51,7 +53,7 @@ class MainController < AppController
     # technically works
     get '/users/:user_id/pets' do
       user = User.find(params[:user_id])
-      user.pets.to_json
+      user.pets.to_json 
     end
 
     # it works
@@ -73,7 +75,6 @@ class MainController < AppController
             pet = Pet.find(params[:id])
             pet.update(data)
             pet.to_json
-
         rescue => e 
             { error: e.message}
         end 

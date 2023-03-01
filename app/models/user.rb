@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
         user = find_by(phone: phone)
         return user if user&.authenticate(password)
     
-        nil
+        user.to_json 
       end
   
     # def self.create_new_user(name, email, phone_number)
