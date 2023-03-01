@@ -44,7 +44,7 @@ class MainController < AppController
     post '/pets/create' do
         begin
             new_pet = Pet.create(JSON.parse(request.body.read))
-            json_response(code: 201, data: pet)
+            json_response(code: 201, data: new_pet)
         rescue => e 
             json_response(code: 422, data: e.message)
         end 
@@ -66,7 +66,7 @@ class MainController < AppController
         body = JSON.parse(request.body.read)
         pets = Pet.where('name LIKE ? OR breed LIKE ?', "%#{body['query']}%", "%#{body['query']}%")
         pets.to_json
-    end
+    end 
 
     # it works
     put '/update/pets/:id' do
