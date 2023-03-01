@@ -22,9 +22,11 @@ gem 'rack-cors', '~> 2.0'
 
 gem 'require_all', '~> 3.0'
 
+gem 'faker'
+
 group :development do
     gem 'rerun', '~> 0.14.0'
-    gem 'faker'
+    
 end
 
 group :test do
@@ -32,5 +34,5 @@ group :test do
     gem 'rack-test', '~> 2.0', '>= 2.0.2'
     gem 'rspec', '~> 3.12'
     gem 'rspec-json_expectations', '~> 2.2'
-    gem 'faker'
+    # gem 'faker'
 end
