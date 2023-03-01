@@ -7,7 +7,7 @@ class ApplicationController < AppController
     #   belongs_to :user
     # end
 
-    set :default_content_type, 'application/json'
+    # set :default_content_type, 'application/json'
 
     # User routes
     
