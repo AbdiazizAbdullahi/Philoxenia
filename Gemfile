@@ -32,7 +32,7 @@ end
 group :test do
     # gem 'database_cleaner', '~> 2.0', '>= 2.0.1'
     gem 'rack-test', '~> 2.0', '>= 2.0.2'
-    # gem 'rspec', '~> 3.12'
+    gem 'rspec', '~> 3.12'
     # gem 'rspec-json_expectations', '~> 2.2'
     # gem 'faker'
 end
