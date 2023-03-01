@@ -1,4 +1,4 @@
-class ApplicationController < AppController
+class MainController < AppController
     # class User < ActiveRecord::Base
     #   has_many :pets
     # end 

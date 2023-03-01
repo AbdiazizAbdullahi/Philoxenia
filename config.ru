@@ -4,4 +4,4 @@ require_relative './config/environment'
 # use Rack::JSONBodyParser
 
 # Our application
-run ApplicationController
+run MainController 
