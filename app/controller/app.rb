@@ -3,7 +3,7 @@
 class AppController < Sinatra::Base
 
 
-    # @api: Enable CORS Headers
+    # @api: Enaable CORS Headers
     configure do
       enable :cross_origin
     end
