@@ -1,13 +1,4 @@
 class MainController < AppController
-    # class User < ActiveRecord::Base
-    #   has_many :pets
-    # end 
-
-    # class Pet < ActiveRecord::Base
-    #   belongs_to :user
-    # end
-
-    # set :default_content_type, 'application/json'
 
     # User routes
     
@@ -27,8 +18,11 @@ class MainController < AppController
       
 
       post '/login' do
-        phone = params[:phone]
-        password = params[:password]
+        request.body.rewind
+        request_payload = JSON.parse(request.body.read)
+      
+        phone = request_payload['phone']
+        password = request_payload['password']
       
         user = User.find_by(phone: phone, password: password)
         if user
@@ -37,7 +31,8 @@ class MainController < AppController
           { success: false, error: 'Invalid credentials' }.to_json
         end
       end
-
+      
+  
     # Pet routes
     # it works
     post '/pets/create' do
@@ -85,8 +80,8 @@ class MainController < AppController
             # remove = JSON.parse(request.body.read) 
             pet = Pet.find(params[:id])
             pet.destroy
-            "Deleted!"
-            status 204
+            # status 204 
+            { success: true, message: "Removed successfully"  }.to_json
 
         rescue => e 
             { error: e.message}
