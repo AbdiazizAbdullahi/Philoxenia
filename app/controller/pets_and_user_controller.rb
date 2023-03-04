@@ -9,10 +9,11 @@ class MainController < AppController
         
         if user
           status 400
-          body 'User already exists. Please login'
+          { data: { success: false, error: 'User already exists. Please login!'} }.to_json
         else
           new_user = User.create(user_data)
           new_user.to_json
+          { success: true, user: new_user }.to_json
         end
       end
       
