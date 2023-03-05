@@ -64,7 +64,7 @@ class MainController < AppController
     end 
 
     # it works
-    put '/update/pets/:id' do
+    post '/update/pets/:id' do
         begin 
             data = JSON.parse(request.body.read)
             pet = Pet.find(params[:id])
