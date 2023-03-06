@@ -2,7 +2,7 @@
 # User.delete_all
 # User.reset_column_information
 # Pet.destroy_all
-# Pet.reset_column_information
+# Pet.reset_column_information 
 
 # Create 30 users
 # 30.times do

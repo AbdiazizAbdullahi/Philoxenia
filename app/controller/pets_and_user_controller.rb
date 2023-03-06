@@ -47,9 +47,19 @@ class MainController < AppController
 
     # technically works
     get '/users/:user_id/pets' do
-      user = User.find(params[:user_id])
-      user.pets.to_json 
+      user = User.find_by(id: params[:user_id])
+    
+      if user
+        pets = user.pets
+        json pets
+      else
+        status 404
+        json_response(code: 404, message: 'User not found')
+      end
     end
+    
+
+
 
     # it works
     get '/pets' do
