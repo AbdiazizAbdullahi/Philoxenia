@@ -25,7 +25,7 @@
 #     )
 # end 
   
-
+user1 = User.create(name: "Flata", email: "flata@gmail.com", phone: "0708905949", password: "password")
 # pet1 = Pet.create(name:"Lily", breed: "Persian", image: "https://www.thesprucepets.com/thmb/5OSN_p9hUfPssKsJORQDGnAz_tQ=/1963x0/filters:no_upscale():strip_icc()/GettyImages-181861505-4e63227ed0a14dc9bfe86848ef54caf3.jpg", age: 13, user_id: 2)
 # pet2 = Pet.create(name:"Sasy", breed: "Persian", image: "https://azure.wgp-cdn.co.uk/app-yourcat/posts/iStock-174776419-1.jpg?&format=webp&webp.quality=40&scale=both", age: 3, user_id: 7)
 # pet3 = Pet.create(name:"Mewi", breed: "Persian", image: "https://img.freepik.com/premium-photo/persian-cat-6-years-old_191971-5097.jpg?w=2000", age: 16, user_id: 8)

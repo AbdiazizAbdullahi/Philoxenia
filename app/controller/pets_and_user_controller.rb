@@ -36,14 +36,19 @@ class MainController < Sinatra::Base
       { success: true, user: user }.to_json
     else
       { success: false, error: 'Invalid credentials' }.to_json
-    end
+    end 
   end
   
    #returns all the pets for a specific user
-   get "/pets/:username" do
-    single_user = User.find_by(username:params[:username])
-    single_user.pets.to_json 
-  end
+   get "/pets/:id" do
+    user = User.find(id:params[:id])
+    pets = user.pets.to_json
+    if user
+    { success: true, pets: pets }.to_json
+    else 
+      { success: false, error: 'User not found' }.to_json
+    end 
+   end
    
     #Searches through the list of all the pets and returns the pets that match
     post '/pets/search_all' do
@@ -84,6 +89,4 @@ class MainController < Sinatra::Base
         find_pet.update(new_details)
         find_pet.to_json
   end
-
-  
 end 
