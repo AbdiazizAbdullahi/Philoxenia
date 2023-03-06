@@ -22,6 +22,10 @@ gem 'require_all', '~> 3.0'
 
 gem 'faker'
 
+# gem 'rack', '~> 3.0', '>= 3.0.4.2'
+
+gem 'rack-cors', '~> 2.0'
+
 group :development do
     gem 'rerun', '~> 0.14.0'
     
