@@ -1,5 +1,4 @@
-class MainController < Sinatra::Base
-
+class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
 
   configure do 
@@ -11,44 +10,12 @@ class MainController < Sinatra::Base
     all_users = User.all
     all_users.to_json
   end
-
-  post '/user' do
-    user_data = JSON.parse(request.body.read)
-    user = User.find_by(phone: user_data['phone'])
-    
-    if user
-      { success: false, error: "User already exist! Please login" }.to_json
-    else
-      new_user = User.create(user_data)
-      { success: true, user: new_user }.to_json
-    end
-  end
-
-  post '/login' do
-    request.body.rewind
-    request_payload = JSON.parse(request.body.read)
-  
-    phone = request_payload['phone']
-    password = request_payload['password']
-  
-    user = User.find_by(phone: phone, password: password)
-    if user
-      { success: true, user: user }.to_json
-    else
-      { success: false, error: 'Invalid credentials' }.to_json
-    end 
-  end
   
    #returns all the pets for a specific user
-   get "/pets/:id" do
-    user = User.find(id:params[:id])
-    pets = user.pets.to_json
-    if user
-    { success: true, pets: pets }.to_json
-    else 
-      { success: false, error: 'User not found' }.to_json
-    end 
-   end
+   get "/pets/:name" do
+    single_user = User.find_by(name:params[:name])
+    single_user.pets.to_json 
+  end
    
     #Searches through the list of all the pets and returns the pets that match
     post '/pets/search_all' do
@@ -58,9 +25,9 @@ class MainController < Sinatra::Base
     end 
 
       #Searches through a list of all the pets of a speific user and returns the pets that match
-  post '/pets/search/:username' do
+  post '/pets/search/:name' do
     search_request = JSON.parse(request.body.read)
-    my_pets = User.find_by(username:params[:username])
+    my_pets = User.find_by(name:params[:name])
     search_response = my_pets.pets.where('name LIKE ? OR breed LIKE ?', "%#{body['query']}%", "%#{body['query']}%")
     search_response.to_json
   end 
@@ -89,4 +56,10 @@ class MainController < Sinatra::Base
         find_pet.update(new_details)
         find_pet.to_json
   end
-end 
+
+  post "/user" do
+    new_user = User.create(JSON.parse(request.body.read))
+    new_user.to_json
+  end
+
+end
