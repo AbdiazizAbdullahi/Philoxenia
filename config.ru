@@ -13,4 +13,4 @@ end
 
 
 # Our application
-run MainController 
+run ApplicationController 
